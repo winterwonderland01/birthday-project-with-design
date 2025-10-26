@@ -631,25 +631,3 @@ footer {
     bottom: -25px;
   }
 }
-@media (max-width: 600px) {
-  .big-envelope {
-    width: 300px;
-    height: 180px;
-    position: relative;
-    z-index: 10; /* bring to front */
-    cursor: pointer; /* ensures tap cursor */
-  }
-
-  #transition-envelope-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 5; /* keeps background behind */
-  }
-
-  /* optional: make sure nothing overlaps */
-  #overlay,
-  #popupLetter {
-    z-index: 1;
-  }
-}
