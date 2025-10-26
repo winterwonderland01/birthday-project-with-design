@@ -608,26 +608,48 @@ footer {
   100% { transform: translateY(120vh) rotate(360deg); opacity: 0; }
 }
 
-/* Make big envelope slightly smaller on mobile */
+/* Make big envelope smaller on mobile */
 @media (max-width: 600px) {
   .big-envelope {
-    width: 380px;   /* was 500px */
-    height: 230px;  /* was 300px */
+    width: 300px;   /* was 500px */
+    height: 180px;  /* was 300px */
   }
 
   .big-envelope .heart {
-    width: 26px;
-    height: 26px;
+    width: 20px;
+    height: 20px;
   }
 
   .big-envelope .heart:before,
   .big-envelope .heart:after {
-    width: 26px;
-    height: 26px;
+    width: 20px;
+    height: 20px;
   }
 
   .big-envelope .envelope-text {
-    font-size: 1rem;
-    bottom: -30px;
+    font-size: 0.9rem;
+    bottom: -25px;
+  }
+}
+@media (max-width: 600px) {
+  .big-envelope {
+    width: 300px;
+    height: 180px;
+    position: relative;
+    z-index: 10; /* bring to front */
+    cursor: pointer; /* ensures tap cursor */
+  }
+
+  #transition-envelope-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5; /* keeps background behind */
+  }
+
+  /* optional: make sure nothing overlaps */
+  #overlay,
+  #popupLetter {
+    z-index: 1;
   }
 }
