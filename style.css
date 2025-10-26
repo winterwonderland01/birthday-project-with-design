@@ -302,6 +302,16 @@ footer {
   pointer-events: none;
   opacity: 0.8;
 }
+/* Confetti */
+.firework {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background-color: #183447;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 100;
+}
 /* --- Additional Enhancements --- */
 
 /* Pulsing text on front page */
