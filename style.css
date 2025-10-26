@@ -608,3 +608,26 @@ footer {
   100% { transform: translateY(120vh) rotate(360deg); opacity: 0; }
 }
 
+/* Make big envelope slightly smaller on mobile */
+@media (max-width: 600px) {
+  .big-envelope {
+    width: 380px;   /* was 500px */
+    height: 230px;  /* was 300px */
+  }
+
+  .big-envelope .heart {
+    width: 26px;
+    height: 26px;
+  }
+
+  .big-envelope .heart:before,
+  .big-envelope .heart:after {
+    width: 26px;
+    height: 26px;
+  }
+
+  .big-envelope .envelope-text {
+    font-size: 1rem;
+    bottom: -30px;
+  }
+}
