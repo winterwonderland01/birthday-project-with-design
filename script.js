@@ -115,13 +115,13 @@ bigEnvelope.addEventListener('click', () => {
         if (i < fullText.length && popup.classList.contains('show')) {
           p.textContent += fullText.charAt(i);
           i++;
-          const t = setTimeout(typeStep, 15);
+          const t = setTimeout(typeStep, 8);
           typingTimeouts.push(t);
         }
       };
       const tStart = setTimeout(typeStep, delay);
       typingTimeouts.push(tStart);
-      delay += Math.max(300, fullText.length * 15) + 100;
+      delay += Math.max(300, fullText.length * 10) + 100;
     });
 
     spawnConfetti(80);
@@ -240,5 +240,82 @@ setInterval(() => {
   document.body.appendChild(gift);
   setTimeout(() => gift.remove(), 12000);
 }, 2000);
+function spawnFirework(x, y, count = 20) {
+  for (let i = 0; i < count; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'firework';
+    particle.style.left = x + 'px';
+    particle.style.top = y + 'px';
+    particle.style.backgroundColor = `hsl(${Math.random() * 360}, 80%, 60%)`;
+    document.body.appendChild(particle);
+
+    const angle = Math.random() * 2 * Math.PI;
+    const speed = Math.random() * 6 + 3;
+    let vx = Math.cos(angle) * speed;
+    let vy = Math.sin(angle) * speed;
+    let life = 0;
+
+    const interval = setInterval(() => {
+      life++;
+      particle.style.left = parseFloat(particle.style.left) + vx + 'px';
+      particle.style.top = parseFloat(particle.style.top) + vy + 'px';
+      vy += 0.1; // gravity effect
+      particle.style.opacity = 1 - life / 50;
+
+      if (life > 50) {
+        clearInterval(interval);
+        particle.remove();
+      }
+    }, 16);
+  }
+}
+function spawnEnvelopeBurst(count = 30) {
+  const envelopeRect = envelope.getBoundingClientRect();
+  const centerX = envelopeRect.left + envelopeRect.width / 2;
+  const centerY = envelopeRect.top + envelopeRect.height / 2;
+
+  for (let i = 0; i < count; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'confetti';
+    particle.style.left = centerX + 'px';
+    particle.style.top = centerY + 'px';
+    particle.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 50%)`;
+    particle.style.width = particle.style.height = `${Math.random() * 8 + 4}px`;
+    document.body.appendChild(particle);
+
+    const angle = Math.random() * 2 * Math.PI;
+    const speed = Math.random() * 8 + 4;
+    let vx = Math.cos(angle) * speed;
+    let vy = Math.sin(angle) * speed;
+    let life = 0;
+
+    const interval = setInterval(() => {
+      life++;
+      particle.style.left = parseFloat(particle.style.left) + vx + 'px';
+      particle.style.top = parseFloat(particle.style.top) + vy + 'px';
+      vy += 0.2; // gravity
+      particle.style.opacity = 1 - life / 60;
+
+      if (life > 60) {
+        clearInterval(interval);
+        particle.remove();
+      }
+    }, 16);
+  }
+}
+envelope.addEventListener('click', () => {
+  openPopup(); // show the popup
+  spawnEnvelopeBurst(40); // burst of confetti
+
+  // Delay fireworks slightly so flap opening doesn't interfere
+  setTimeout(() => {
+    const rect = envelope.getBoundingClientRect();
+    spawnFirework(
+      rect.left + rect.width / 2,
+      rect.top + rect.height / 2,
+      25
+    );
+  }, 150); // 150ms delay
+});
 
 });
