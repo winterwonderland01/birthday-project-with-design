@@ -607,27 +607,3 @@ footer {
   50% { transform: translateY(50vh) rotate(180deg); opacity: 0.6; }
   100% { transform: translateY(120vh) rotate(360deg); opacity: 0; }
 }
-
-/* Make big envelope smaller on mobile */
-@media (max-width: 600px) {
-  .big-envelope {
-    width: 300px;   /* was 500px */
-    height: 180px;  /* was 300px */
-  }
-
-  .big-envelope .heart {
-    width: 20px;
-    height: 20px;
-  }
-
-  .big-envelope .heart:before,
-  .big-envelope .heart:after {
-    width: 20px;
-    height: 20px;
-  }
-
-  .big-envelope .envelope-text {
-    font-size: 0.9rem;
-    bottom: -25px;
-  }
-}
